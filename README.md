@@ -4,30 +4,39 @@
 
 ## Infrastructure as code (IaC)
 
+Here's 5 examples of infrastructure as code.
 
-1. Ad hoc scripts
+### 1. Ad hoc scripts
+
+Example being PowerShell, Python, Bash
 
 - written in scripting language
 - good for one-off tasks
-- hard to maintain
+- hard to maintain larger projects
 
-2. Configuration management tools
+### 2. Configuration management tools
 
-- idempotence
+Configures 1 or more VMs
+
+- Agent or agentless
+- Master or masterless
+- May be idempotence
 - scales better
 
-3. Server templating tools
+### 3. Server templating tools
+
+Creates a fixed image/snapshot of a system
 
 - docker, packer, vagrant
 - immutable (deploy once, redeploy instead of change)
 - for example, use packer to create a specific image, deploy it on many servers using ansible
 
-4. Orchestration tools
+### 4. Orchestration tools
 
 - kubernetes, docker swarm, nomad
 - used to monitor, update, scale, load balance servers/services
 
-5. Provisioning tools
+### 5. Provisioning tools
 
 - used to actually create the virtual machine
 - terraform, cloudformation, openstack heat, pulumi
@@ -56,15 +65,13 @@
 3. have an action that runs terraform apply
 4. infra is created
 
-
 Terraform does not make the exact same code possible for all cloud providers, since the providers themselves does not provide the same hardware
 However you can use the same practices, language and toolset to deploy to many different cloud providers
-
-
 
 ### procedural approach vs declarative approach
 
 ansible is an example of procedural, it creates resources, without being aware of what it already created
+
 terraform is declarative, meaning you you want to increase the count from 10 to 15, simply change 10 -> 15, in ansible you would change 10 to 5 (to make 5 more).
 
 ## Master/agent vs master/agentless
@@ -85,9 +92,10 @@ Terraform utililizes the cloud providers agent
 ## Maturity
 
 Chef and puppet has been around since 2009 & 2005, they're very mature
-Ansible, CloudFormation and Terraform has been around since 2012, 2011 and 2014, somewhat mature by now
-Pulimi seems newest and least mature
 
+Ansible, CloudFormation and Terraform has been around since 2012, 2011 and 2014, somewhat mature by now
+
+Pulimi seems newest and least mature
 
 ### Combinations of IAC tools
 
@@ -121,10 +129,10 @@ Terraform, Packer, Docker and Kubernetes
 4. When the servers are up, it forms a kubernetes cluster that containerized your application
 
 It's quick since docker builds quick
+
 It adds a lot of complexity, adding cost to managing, takes time to learn all of the IaC systems
 
-
-# Table 1-4. A comparison of the most common ways to use the most popular IaC tools
+## Table 1-4. A comparison of the most common ways to use the most popular IaC tools
 
 |              | Chef  | Puppet | Ansible | Pulumi | CloudFormation | Heat  | Terraform |
 |--------------|-------|--------|---------|--------|----------------|-------|-----------|
@@ -139,5 +147,3 @@ It adds a lot of complexity, adding cost to managing, takes time to learn all of
 | Paid Service | Optional | Optional | Optional | Must-have | N/A | N/A | Optional |
 | Community    | Large | Large  | Huge    | Small  | Small          | Small | Huge      |
 | Maturity     | High  | High   | Medium  | Low    | Medium         | Low   | Medium    |
-
-
