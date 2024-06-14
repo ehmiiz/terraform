@@ -147,3 +147,41 @@ It adds a lot of complexity, adding cost to managing, takes time to learn all of
 | Paid Service | Optional | Optional | Optional | Must-have | N/A | N/A | Optional |
 | Community    | Large | Large  | Huge    | Small  | Small          | Small | Huge      |
 | Maturity     | High  | High   | Medium  | Low    | Medium         | Low   | Medium    |
+
+## Terraform
+
+### Variables
+
+#### Input variable
+
+Variables are declared outside of the resources
+
+Variables are accessed using the variable reference syntax:
+`var.<VARIABLE_NAME>`
+
+Variables can be populated using the -var option `terraform x -var "<VARIABLE_NAME>=<value>"`
+
+or environment variables as so: `export TF_VAR_<VARIABLE_NAME>=<VALUE>`
+
+alternativly, using the `default` variable parameter.
+
+```tf
+variable "NAME" {
+    description = "always put a variable description in"
+    default = "fallback for variable declaration, if not declared in cli (using -var), or via file using var-file, or via env vars, it fallbacks to default, same as default variable "
+    type = "allows to enforce type constraints on variables, supports string, number, bool, list, map, set, object, tuple and any"
+    validation = "enables custom validation rules for input, minimum, maximum value on a number, etc"
+    sensitive = true # excludes it from logging, use on secrets
+}
+```
+
+#### Output variables
+
+Supports `description`, `sensitive`, `depends_on`.
+
+```tf
+output "public_ip" {
+    value = aws_instance.example.public_ip
+    description = "The pub ip addr of the webserver"
+}
+```
